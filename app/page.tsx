@@ -136,7 +136,7 @@ export default function Home() {
                     align="right"
                     sx={{ fontSize: '0.8rem', cursor: 'pointer', color: 'blue' }}
                     onClick={() => {
-                      navigator.clipboard.writeText(`http://localhost:3000/link?id=${item}`)
+                      navigator.clipboard.writeText(`http://84.200.154.221:4200/link?id=${item}`)
                         .catch(err => console.error('خطا در کپی:', err));
                     }}
                   >
