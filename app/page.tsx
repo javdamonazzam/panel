@@ -1,5 +1,4 @@
-'use client';
-
+"use client"
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import * as React from 'react';
@@ -11,8 +10,6 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
-
 
 export default function Home() {
   const [data, setData] = useState([]);
@@ -61,14 +58,13 @@ export default function Home() {
     const create = await axios.get(`http://79.133.46.247:3000/remove?publicKey=${name}`);
     setLoading(false)
   }
-  const handleCopy = (link: string) => {
-    navigator.clipboard.writeText(link).then(() => {
-      alert('کپی شد!');
-    }).catch((err) => {
-      console.error('خطا در کپی:', err);
-    });
-  };
-  const [copy, setcopy] = useState(false);
+    const handleCopy = (link:string) => {
+      navigator.clipboard.writeText(link).then(() => {
+        alert('کپی شد!');
+      }).catch((err) => {
+        console.error('خطا در کپی:', err);
+      });
+    };
   return (
     <>
       <Box
@@ -140,12 +136,7 @@ export default function Home() {
                     sx={{ fontSize: '0.8rem', cursor: 'pointer', color: 'blue' }}
                     onClick={() => handleCopy(`http://84.200.154.221:4200/link?id=${item}`)}
                   >
-                    <CopyToClipboard
-                      text={process.env.NEXT_PUBLIC_URL + 'service/public?title=' + title}
-                      onCopy={() => setcopy(true)}
-                    >
-                      کپی لینک
-                    </CopyToClipboard>
+                    کپی لینک
                   </TableCell>
                   <TableCell align="left" sx={{ fontSize: '1rem', paddingRight: '60px' }}>
                     <button
