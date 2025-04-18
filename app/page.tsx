@@ -58,14 +58,13 @@ export default function Home() {
     const create = await axios.get(`http://79.133.46.247:3000/remove?publicKey=${name}`);
     setLoading(false)
   }
-  // const CopyableTableCell = ({ link }) => {
-  //   const handleCopy = () => {
-  //     navigator.clipboard.writeText(link).then(() => {
-  //       alert('کپی شد!');
-  //     }).catch((err) => {
-  //       console.error('خطا در کپی:', err);
-  //     });
-  //   };
+    const handleCopy = (link:string) => {
+      navigator.clipboard.writeText(link).then(() => {
+        alert('کپی شد!');
+      }).catch((err) => {
+        console.error('خطا در کپی:', err);
+      });
+    };
   return (
     <>
       <Box
@@ -135,10 +134,7 @@ export default function Home() {
                   <TableCell
                     align="right"
                     sx={{ fontSize: '0.8rem', cursor: 'pointer', color: 'blue' }}
-                    onClick={() => {
-                      navigator.clipboard.writeText(`http://84.200.154.221:4200/link?id=${item}`)
-                        .catch(err => console.error('خطا در کپی:', err));
-                    }}
+                    onClick={() => handleCopy(`http://84.200.154.221:4200/link?id=${item}`)}
                   >
                     کپی لینک
                   </TableCell>
