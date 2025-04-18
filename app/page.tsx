@@ -58,13 +58,24 @@ export default function Home() {
     const create = await axios.get(`http://79.133.46.247:3000/remove?publicKey=${name}`);
     setLoading(false)
   }
-    const handleCopy = (link:string) => {
-      navigator.clipboard.writeText(link).then(() => {
-        alert('کپی شد!');
-      }).catch((err) => {
-        console.error('خطا در کپی:', err);
-      });
-    };
+  const copyToClipboardFallback = (text: string) => {
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.setAttribute('readonly', '');
+    textarea.style.position = 'absolute';
+    textarea.style.left = '-9999px';
+    document.body.appendChild(textarea);
+    textarea.select();
+    try {
+      document.execCommand('copy');
+      alert('لینک کپی شد!');
+    } catch (err) {
+      alert('کپی نشد!');
+      console.error('خطا در کپی:', err);
+    }
+    document.body.removeChild(textarea);
+  };
+  
   return (
     <>
       <Box
@@ -134,7 +145,9 @@ export default function Home() {
                   <TableCell
                     align="right"
                     sx={{ fontSize: '0.8rem', cursor: 'pointer', color: 'blue' }}
-                    onClick={() => handleCopy(`http://84.200.154.221:4200/link?id=${item}`)}
+                    onClick={() => {
+                      copyToClipboardFallback(`http://84.200.154.221:8001/service/link?title=${item}`)
+                    }}
                   >
                     کپی لینک
                   </TableCell>
