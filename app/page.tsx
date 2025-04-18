@@ -58,6 +58,14 @@ export default function Home() {
     const create = await axios.get(`http://79.133.46.247:3000/remove?publicKey=${name}`);
     setLoading(false)
   }
+  // const CopyableTableCell = ({ link }) => {
+  //   const handleCopy = () => {
+  //     navigator.clipboard.writeText(link).then(() => {
+  //       alert('کپی شد!');
+  //     }).catch((err) => {
+  //       console.error('خطا در کپی:', err);
+  //     });
+  //   };
   return (
     <>
       <Box
@@ -115,6 +123,7 @@ export default function Home() {
           <TableHead>
             <TableRow>
               <TableCell align="right" sx={{ fontSize: '0.8rem' }}>نام کاربر</TableCell>
+              <TableCell align="right" sx={{ fontSize: '0.8rem' }}>لینک</TableCell>
               <TableCell align="left" sx={{ fontSize: '0.8rem' }}>عملیات</TableCell>
             </TableRow>
           </TableHead>
@@ -123,6 +132,16 @@ export default function Home() {
               data.map((item, index) => (
                 <TableRow key={index}>
                   <TableCell align="right" sx={{ fontSize: '0.8rem' }}>{item}</TableCell>
+                  <TableCell
+                    align="right"
+                    sx={{ fontSize: '0.8rem', cursor: 'pointer', color: 'blue' }}
+                    onClick={() => {
+                      navigator.clipboard.writeText(`http://localhost:3000/link?id=${item}`)
+                        .catch(err => console.error('خطا در کپی:', err));
+                    }}
+                  >
+                    کپی لینک
+                  </TableCell>
                   <TableCell align="left" sx={{ fontSize: '1rem', paddingRight: '60px' }}>
                     <button
                       style={{
